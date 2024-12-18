@@ -6,8 +6,6 @@
         "deployment", "npm", "Reactjs", "Rust"
     ],
     "filePatterns": [
-        "package.json$",
-        "^Dockerfile",
-        ".*\\.md$"
+        "package.json$"
     ]
 }
