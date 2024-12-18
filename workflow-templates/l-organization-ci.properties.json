@@ -1,0 +1,13 @@
+{
+    "name": "L Organization Workflow",
+    "description": "L Organization CI workflow template.",
+    "iconName": "example-icon",
+    "categories": [
+        "deployment", "npm", "Reactjs", "Rust"
+    ],
+    "filePatterns": [
+        "package.json$",
+        "^Dockerfile",
+        ".*\\.md$"
+    ]
+}
