@@ -3,18 +3,22 @@ name: Build FE from workflow call
 on:
   workflow_call:
     inputs:
-      AWS_REGION:
+      aws_region:
         required: true
         default: ""
         type: string
-      CHAT_ID: 
+      s3_host_bucket:
+        required: true
+        default: ""
+        type: string
+      chat_id: 
         required: true
         default: ''
         type: string
     secrets:
-      TOKEN_TELE: 
+      token_tele: 
         required: true
-      ASSUME_ROLE:
+      assum_role:
         required: true
 # permission can be added at job level or workflow level
 permissions:
@@ -46,10 +50,10 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ inputs.ASSUME_ROLE }}
+          role-to-assume: ${{ secrets.assum_role }}
           role-session-name: GitHubActions-${{ github.ref_name }}-${{ github.run_number }}
-          aws-region: ${{ inputs.AWS_REGION }}
+          aws-region: ${{ inputs.aws_region }}
       
       - name: Deploy to s3
         run: |
-          aws s3 sync www s3://${{ inputs.S3_HOST_BUCKET }}/ --quiet
+          aws s3 sync www s3://${{ inputs.s3_host_bucket }}/ --quiet
