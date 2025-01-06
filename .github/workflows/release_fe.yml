@@ -7,16 +7,14 @@ on:
         required: true
         default: ""
         type: string
-      ASSUME_ROLE:
-        required: true
-        default: ''
-        type: string
       CHAT_ID: 
         required: true
         default: ''
         type: string
     secrets:
       TOKEN_TELE: 
+        required: true
+      ASSUME_ROLE:
         required: true
 # permission can be added at job level or workflow level
 permissions:
