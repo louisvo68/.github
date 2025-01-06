@@ -5,11 +5,11 @@ on:
     inputs:
       AWS_REGION:
         required: true
-        default: "us-east-1"
+        default: ""
         type: string
       ASSUME_ROLE:
         required: true
-        default: 'arn:aws:iam::982534355639:role/GitHubAction-AssumeRoleWithAction'
+        default: ''
         type: string
       TOKEN_TELE: 
         required: true
@@ -17,7 +17,7 @@ on:
         type: string
       CHAT_ID: 
         required: true
-        default: '1103423004'
+        default: ''
         type: string
 
 # permission can be added at job level or workflow level
