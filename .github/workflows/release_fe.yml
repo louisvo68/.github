@@ -1,0 +1,59 @@
+name: Build FE from workflow call
+
+on:
+  workflow_call:
+    inputs:
+      AWS_REGION:
+        required: true
+        default: "us-east-1"
+        type: string
+      ASSUME_ROLE:
+        required: true
+        default: 'arn:aws:iam::982534355639:role/GitHubAction-AssumeRoleWithAction'
+        type: string
+      TOKEN_TELE: 
+        required: true
+        default: '7979881519:AAGm6zdb48nskdlouW1sjtLCwXUhGi7uEig'
+        type: string
+      CHAT_ID: 
+        required: true
+        default: '1103423004'
+        type: string
+
+# permission can be added at job level or workflow level
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+  
+jobs:
+  DeployAppPro:
+    runs-on: macos-latest
+    steps: 
+      # Stage: Clone repository
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+        # Stage: Install Node.js
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      # Stage: Build
+      - name: Install and Build
+        run: |
+          npm i --save-dev @types/node
+          npm install
+          npm update
+          npm run build
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ inputs.ASSUME_ROLE }}
+          role-session-name: GitHubActions-${{ github.ref_name }}-${{ github.run_number }}
+          aws-region: ${{ inputs.AWS_REGION }}
+      
+      - name: Deploy to s3
+        run: |
+          aws s3 sync www s3://${{ inputs.S3_HOST_BUCKET }}/ --quiet
