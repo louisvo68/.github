@@ -13,7 +13,7 @@ on:
         type: string
       TOKEN_TELE: 
         required: true
-        default: '7979881519:AAGm6zdb48nskdlouW1sjtLCwXUhGi7uEig'
+        default: 'xx'
         type: string
       CHAT_ID: 
         required: true
