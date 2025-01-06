@@ -11,15 +11,13 @@ on:
         required: true
         default: ''
         type: string
-      TOKEN_TELE: 
-        required: true
-        default: 'xx'
-        type: string
       CHAT_ID: 
         required: true
         default: ''
         type: string
-
+    secrets:
+      TOKEN_TELE: 
+        required: true
 # permission can be added at job level or workflow level
 permissions:
   id-token: write   # This is required for requesting the JWT
