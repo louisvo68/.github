@@ -32,10 +32,7 @@ jobs:
       # Stage: Clone repository
       - name: Checkout Code
         uses: actions/checkout@v4
-
-      # test print env
-      - name: Test print ENV
-        run: echo "Giá trị của: ${{ env.TEST }}"
+        
         # Stage: Install Node.js
       - name: Setup node
         uses: actions/setup-node@v4
